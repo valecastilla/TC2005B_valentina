@@ -1,189 +1,210 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Comandos</title>
     <style>
-        table, th, td 
-        {
-            border: 1px solid black;
-        }
+      /* Definir estilos para las tablas */
+      table,
+      th,
+      td {
+        border: 1px solid black;
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
+    <!-- Encabezado de la página -->
     <h1>Comandos comunes para git y la terminal</h1>
+
+    <!-- Sección de comandos de github -->
     <h2>Comandos de git</h2>
+    <!-- Tabla de comandos github -->
     <table>
-        <tr>
-            <th>Comando</th>
-            <th>Descripción</th>
-        </tr>
-        <tr>
-            <th><code>git status</code></th>
-            <td>Muestra el estado actual del repositorio</td>
-        </tr>
-        <tr>
-            <th><code>git clone {ssh url}</code></th>
-            <td>Crea una copia de un repositorio de manera local</td>
-        </tr>
-        <tr>
-            <th><code>git add {archivo or carpeta}</code></th>
-            <td>
-                Rastrea el archivo y lo añade a la staging area<br>
-                <strong>git add *</strong> Hace el add con todos los archivos
-            </td>
-        </tr>
-        <tr>
-            <th><code>git commit -m “{Descripción del commit}”</code></th>
-            <td>Registra los cambios en el repositorio local</td>
-        </tr>
-        <tr>
-            <th><code>git push -u origin {branch}</code></th>
-            <td>Manda los cambios del repositorio local al remoto</td>
-        </tr>
-        <tr>
-            <th><code>git restore --staged {archivo}</code></th>
-            <td>Quita el archivo de la staging area</td>
-        </tr>
-        <tr>
-            <th><code>git restore {archivo}</code></th>
-            <td>Descarta cambios de un archivo</td>
-        </tr>
-        <tr>
-            <th><code>git checkout -b {nombre}</code></th>
-            <td>Crea una nueva branch y te mueve automaticamente a esta</td>
-        </tr>
-        <tr>
-            <th><code>git branch {nombre}</code></th>
-            <td>Crea una nueva branch, sin embargo no te mueve a esta</td>
-        </tr>
-        <tr>
-            <th>
-                <code>git checkout {branch a la que se quiere ir}<br>
-                git switch {branch a la que se quiere ir}</code>
-            </th>
-            <td>Permiten moverse entre branches</td>
-        </tr>
-        <tr>
-            <th><code>git branch</code></th>
-            <td>
-                Muestra todas las branches del repositorio<br>
-                <strong>*</strong> Señala la branch actual
-            </td>
-        </tr>
-        <tr>
-            <th><code>git pull origin main</code></th>
-            <td>Para asegurarnos de tener todos los cambios recientes en la main branch</td>
-        </tr>
-        <tr>
-            <th><code>git merge {nombre del branch}</code></th>
-            <td>Hace merge de los contenidos del branch a con la main branch</td>
-        </tr>
-        <tr>
-            <th><code>git push</code></th>
-            <td>Crea un commit y lo desplaza al repositorio remoto</td>
-        </tr>
-        <tr>
-            <th><code>git branch -d {nombre del branch}</code></th>
-            <td>Borra la branch indicada de manera local</td>
-        </tr>
-        <tr>
-            <th><code>git branch -D {nombre del branch}</code></th>
-            <td>Borra la branch sin importar si la branch no esta fusionada, solo de manera local</td>
-        </tr>
-        <tr>
-            <th><code>git push origin -d {nombre del branch}</code></th>
-            <td>Borra la branch del repositorio remoto</td>
-        </tr>
+      <tr>
+        <th>Comando</th>
+        <th>Descripción</th>
+      </tr>
+      <tr>
+        <th><code>git status</code></th>
+        <td>Muestra el estado actual del repositorio</td>
+      </tr>
+      <tr>
+        <th><code>git clone {ssh url}</code></th>
+        <td>Crea una copia de un repositorio de manera local</td>
+      </tr>
+      <tr>
+        <th><code>git add {archivo or carpeta}</code></th>
+        <td>
+          Rastrea el archivo y lo añade a la staging area<br />
+          <strong>git add *</strong> Hace el add con todos los archivos
+        </td>
+      </tr>
+      <tr>
+        <th><code>git commit -m “{Descripción del commit}”</code></th>
+        <td>Registra los cambios en el repositorio local</td>
+      </tr>
+      <tr>
+        <th><code>git push -u origin {branch}</code></th>
+        <td>Manda los cambios del repositorio local al remoto</td>
+      </tr>
+      <tr>
+        <th><code>git restore --staged {archivo}</code></th>
+        <td>Quita el archivo de la staging area</td>
+      </tr>
+      <tr>
+        <th><code>git restore {archivo}</code></th>
+        <td>Descarta cambios de un archivo</td>
+      </tr>
+      <tr>
+        <th><code>git checkout -b {nombre}</code></th>
+        <td>Crea una nueva branch y te mueve automaticamente a esta</td>
+      </tr>
+      <tr>
+        <th><code>git branch {nombre}</code></th>
+        <td>Crea una nueva branch, sin embargo no te mueve a esta</td>
+      </tr>
+      <tr>
+        <th>
+          <code
+            >git checkout {branch a la que se quiere ir}<br />
+            git switch {branch a la que se quiere ir}</code
+          >
+        </th>
+        <td>Permiten moverse entre branches</td>
+      </tr>
+      <tr>
+        <th><code>git branch</code></th>
+        <td>
+          Muestra todas las branches del repositorio<br />
+          <strong>*</strong> Señala la branch actual
+        </td>
+      </tr>
+      <tr>
+        <th><code>git pull origin main</code></th>
+        <td>
+          Para asegurarnos de tener todos los cambios recientes en la main
+          branch
+        </td>
+      </tr>
+      <tr>
+        <th><code>git merge {nombre del branch}</code></th>
+        <td>Hace merge de los contenidos del branch a con la main branch</td>
+      </tr>
+      <tr>
+        <th><code>git push</code></th>
+        <td>Crea un commit y lo desplaza al repositorio remoto</td>
+      </tr>
+      <tr>
+        <th><code>git branch -d {nombre del branch}</code></th>
+        <td>Borra la branch indicada de manera local</td>
+      </tr>
+      <tr>
+        <th><code>git branch -D {nombre del branch}</code></th>
+        <td>
+          Borra la branch sin importar si la branch no esta fusionada, solo de
+          manera local
+        </td>
+      </tr>
+      <tr>
+        <th><code>git push origin -d {nombre del branch}</code></th>
+        <td>Borra la branch del repositorio remoto</td>
+      </tr>
     </table>
 
+    <!-- Sección de comandos de terminal -->
     <h2>Comandos de terminal</h2>
+    <!-- Tabla de comandos de terminal -->
     <table>
-        <tr>
-            <th>Comando</th>
-            <th>Descripción</th>
-        </tr>
-        <tr>
-            <th><code>ls</code></th>
-            <td>
-                Mostrar los archivos del directorio donde esta la terminal<br>
-                <strong>ls -a</strong> Muestra todos los archivos, hasta los ocultos<br>
-                <strong>ls -al</strong> Muestra todos los archivos en forma de lista
-            </td>
-        </tr>
-        <tr>
-            <th><code>cd</code></th>
-            <td>
-                Cambiar de direccion dentro del directorio<br>
-                <strong>cd..</strong> Pemite regresar un directorio atras
-            </td>
-        </tr>
-        <tr>
-            <th><code>mkdir {nombre}</code></th>
-            <td>Crear una nueva carpeta</td>
-        </tr>
-        <tr>
-            <th><code>touch {nombre}</code></th>
-            <td>Crear un archivo</td>
-        </tr>
-        <tr>
-            <th><code>vim {archivo}</code></th>
-            <td>
-                Editar un archivo desde la terminal<br>
-                <strong>i</strong> Ingresa al modo insert lo que permite editar el contenido<br>
-                <strong>:w</strong> Guarda el contenido<br>
-                <strong>:q</strong> Sale de editor<br>
-                <strong>:wq</strong> Guarda y sale del editor
-            </td>
-        </tr>
-        <tr>
-            <th><code>cat {archivo}</code></th>
-            <td>Ver el contenido de un archivo</td>
-        </tr>
-        <tr>
-            <th><code>man {comando}</code></th>
-            <td>Ver el manual de un comando</td>
-        </tr>
-        <tr>
-            <th><code>history</code></th>
-            <td>Muestra el historial</td>
-        </tr>
-        <tr>
-            <th><code>code .</code></th>
-            <td>Abre Visual Studio Code en la dirección de la terminal</td>
-        </tr>
-        <tr>
-            <th><code>cp {archivo a copiar} {donde se copia}</code></th>
-            <td>Copiar un archivo a otro archivo o carpeta</td>
-        </tr>
-        <tr>
-            <th><code>rm {archivo}</code></th>
-            <td>Borra un archivo</td>
-        </tr>
-        <tr>
-            <th><code>mv {archivo} {a donde mover}</code></th>
-            <td>
-                Mueve un archivo a otra carpeta<br>
-                Usar <strong>*.{tipo}</strong> permite mover todos los archivos de cierto tipo
-            </td>
-        </tr>
-        <tr>
-            <th><code>rm -r {carpeta}</code></th>
-            <td>Borra una carpeta</td>
-        </tr>
-        <tr>
-            <th><code>head/tail {archivo} -n</code></th>
-            <td>
-                Permite ver las primeras o ultimas lineas de un archivo respectivamente<br>
-                <strong>less</strong> Para ver el archivo por secciones<br>
-                <strong>grep -i</strong> Busca una palabra dentro del archivo
-            </td>
-        </tr>
+      <tr>
+        <th>Comando</th>
+        <th>Descripción</th>
+      </tr>
+      <tr>
+        <th><code>ls</code></th>
+        <td>
+          Mostrar los archivos del directorio donde esta la terminal<br />
+          <strong>ls -a</strong> Muestra todos los archivos, hasta los
+          ocultos<br />
+          <strong>ls -al</strong> Muestra todos los archivos en forma de lista
+        </td>
+      </tr>
+      <tr>
+        <th><code>cd</code></th>
+        <td>
+          Cambiar de direccion dentro del directorio<br />
+          <strong>cd..</strong> Pemite regresar un directorio atras
+        </td>
+      </tr>
+      <tr>
+        <th><code>mkdir {nombre}</code></th>
+        <td>Crear una nueva carpeta</td>
+      </tr>
+      <tr>
+        <th><code>touch {nombre}</code></th>
+        <td>Crear un archivo</td>
+      </tr>
+      <tr>
+        <th><code>vim {archivo}</code></th>
+        <td>
+          Editar un archivo desde la terminal<br />
+          <strong>i</strong> Ingresa al modo insert lo que permite editar el
+          contenido<br />
+          <strong>:w</strong> Guarda el contenido<br />
+          <strong>:q</strong> Sale de editor<br />
+          <strong>:wq</strong> Guarda y sale del editor
+        </td>
+      </tr>
+      <tr>
+        <th><code>cat {archivo}</code></th>
+        <td>Ver el contenido de un archivo</td>
+      </tr>
+      <tr>
+        <th><code>man {comando}</code></th>
+        <td>Ver el manual de un comando</td>
+      </tr>
+      <tr>
+        <th><code>history</code></th>
+        <td>Muestra el historial</td>
+      </tr>
+      <tr>
+        <th><code>code .</code></th>
+        <td>Abre Visual Studio Code en la dirección de la terminal</td>
+      </tr>
+      <tr>
+        <th><code>cp {archivo a copiar} {donde se copia}</code></th>
+        <td>Copiar un archivo a otro archivo o carpeta</td>
+      </tr>
+      <tr>
+        <th><code>rm {archivo}</code></th>
+        <td>Borra un archivo</td>
+      </tr>
+      <tr>
+        <th><code>mv {archivo} {a donde mover}</code></th>
+        <td>
+          Mueve un archivo a otra carpeta<br />
+          Usar <strong>*.{tipo}</strong> permite mover todos los archivos de
+          cierto tipo
+        </td>
+      </tr>
+      <tr>
+        <th><code>rm -r {carpeta}</code></th>
+        <td>Borra una carpeta</td>
+      </tr>
+      <tr>
+        <th><code>head/tail {archivo} -n</code></th>
+        <td>
+          Permite ver las primeras o ultimas lineas de un archivo
+          respectivamente<br />
+          <strong>less</strong> Para ver el archivo por secciones<br />
+          <strong>grep -i</strong> Busca una palabra dentro del archivo
+        </td>
+      </tr>
     </table>
 
-    <h3><a href="blog.html">Página principal</a></h3>
-
-</body>
+    <!-- Link a la página principal -->
+    <nav>
+      <h3><a href="blog.html">Página principal</a></h3>
+    </nav>
+  </body>
 </html>
