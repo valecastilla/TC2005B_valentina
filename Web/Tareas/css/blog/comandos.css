@@ -1,0 +1,99 @@
+:root {
+    --primary: rgb(181, 136, 136);
+    --secondary: rgb(227, 156, 136);
+    --background: #f1dad4;
+    --border: rgb(207, 158, 144);
+    --primary: rgb(181, 136, 136);
+}
+
+* {
+    margin: 5px;
+}
+
+body {
+    margin: auto; /*Calcular margenes automaticamente*/
+    font-family:Arial, Helvetica, sans-serif;
+    border: #dcdcdc 2px solid;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+h1 {
+    color: var(--primary);
+    border: var(--border) 5px solid; /* Entre magen y padding */
+    border-radius: 15px;
+    background-color: var(--background);
+    text-align: center;
+    margin-bottom: 15px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); /*Agregar sombreado*/
+    transition: transform 0.3s ease; /*Mover la pos del elemento*/
+    padding: 10px;
+}
+
+h2 {
+    color: var(--secondary);
+    margin-bottom: 1px;
+    padding: 10px;
+}
+
+p strong {
+    color: var(--secondary);
+    margin: 0px;
+}
+
+nav {
+    border: var(--border) 3px solid;
+    border-radius: 15px;
+    background-color: var(--background);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    margin-bottom: 15px;
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: var(--primary);
+    text-decoration: none; /*Quitar el subrayado del link*/
+    border-radius: 1px;
+    transition: background-color 0.2s ease; /*Cambiar el fondo del link*/
+}
+
+/*Cuando se pase por encima del link se cambia su color de fondo*/
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Cuando se pase encima del objeto (hover) este se mueve en el eje y 1px s*/
+h1:hover {
+    transform: translateY(-1px);
+}
+
+nav:hover {
+    transform: translateY(-1px);
+}
+
+table {
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+table, th, td {
+  border: 1px solid var(--primary);
+  border-radius: 1px;
+}
+
+thead th {
+    background-color: var(--background);
+    color: var(--primary);
+    padding: 12px;
+    border-radius: 5px 5px 0 0;
+  }
+
+
+table tr strong {
+    color: var(--secondary)
+}
+
+tbody th:hover, tr:hover {
+    background-color: var(--background);
+}

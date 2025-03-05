@@ -1,0 +1,94 @@
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    background-color: rgb(56, 54, 54);
+    color: white;
+}
+
+header nav {
+    margin: 18.72px;
+    display: flex;
+    justify-content: space-between;
+}
+
+header nav a{
+    color: white;
+    text-decoration: none;
+    padding: 0px 5px;
+}
+
+header h3 {
+    margin-left: 18.72px;
+}
+
+#subscribeSection {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-color: rgb(56, 54, 54);
+    padding: 10px 50px;
+}
+
+#subscribeSection p {
+    font-weight: bold;
+    color: white;
+}
+
+#subscribeSection button {
+    background-color: rgb(226, 144, 56);
+    color: white;
+}
+
+#subscribeSection form {
+    margin: 16px
+}
+
+#imageSection {
+    display:flex;
+    justify-content: center;
+    align-content: center;
+}
+
+#imageSection {
+    display:flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: 30px;
+}
+
+
+#webDevelop {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    background-color: rgb(226, 144, 56);
+    color: white;
+    padding: 75px 150px;
+}
+
+#webDevelop h2, p {
+    text-align: center;
+}
+
+footer {
+    background-color: rgb(56, 54, 54);
+    color: white;
+}
+
+footer p{
+    padding: 30px;
+}
+
+.images {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 20px;
+}
