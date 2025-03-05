@@ -74,7 +74,7 @@ nav:hover {
 }
 
 table {
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 8px var(--background);
 }
 
 table, th, td {
@@ -82,12 +82,18 @@ table, th, td {
   border-radius: 1px;
 }
 
+th, td {
+    border-bottom: 1px solid rgba(240, 240, 240, 0.338);
+    padding: 10px; 
+    text-align: left;
+}
+
 thead th {
     background-color: var(--background);
     color: var(--primary);
     padding: 12px;
     border-radius: 5px 5px 0 0;
-  }
+}
 
 
 table tr strong {
@@ -97,3 +103,5 @@ table tr strong {
 tbody th:hover, tr:hover {
     background-color: var(--background);
 }
+
+
