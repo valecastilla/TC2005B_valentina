@@ -2,6 +2,11 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+}
+
 header {
     display: flex;
     flex-direction: row;
@@ -9,6 +14,7 @@ header {
     align-content: center;
     background-color: rgb(56, 54, 54);
     color: white;
+    padding: 0px 50px;
 }
 
 header nav {
@@ -38,6 +44,7 @@ header h3 {
 #subscribeSection p {
     font-weight: bold;
     color: white;
+    padding-right: 15px;
 }
 
 #subscribeSection button {
@@ -46,7 +53,8 @@ header h3 {
 }
 
 #subscribeSection form {
-    margin: 16px
+    margin: 16px;
+    padding-left: 15px;
 }
 
 #imageSection {
@@ -59,7 +67,7 @@ header h3 {
     display:flex;
     justify-content: center;
     align-content: center;
-    margin-top: 30px;
+    margin: 50px 0px;
 }
 
 
@@ -80,10 +88,13 @@ header h3 {
 footer {
     background-color: rgb(56, 54, 54);
     color: white;
+    display: flex;
+    justify-content: center;
+    align-content: center;
 }
 
 footer p{
-    padding: 30px;
+    padding: 20px;
 }
 
 .images {
