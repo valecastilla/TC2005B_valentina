@@ -14,15 +14,20 @@ const canvasHeight = 600;
 let oldTime = 0;
 const paddleVelocity = 0.5;
 // const speedIncrease = 1.1;
-const initialSpeed = 0.2;
+const initialSpeed = 0.4;
 
 let score = 0;
-let lives = 2;
-
+let lives = 3;
+let reset = false;
 // Num de renglones y columnas
-let row = 4;
-let column = 5;
+let row = 5;
+let column = 9;
 let blocks = [];
+
+let totalBlocks = row * column;
+
+// Game over
+let gameOver = false;
 
 // Context of the Canvas
 let ctx;
@@ -85,10 +90,12 @@ class Paddle extends GameObject
 
 class Block extends GameObject
 {
-    constructor(position, width, height, color, visible)
+    constructor(position, width, height, color, visible, special)
     {
         super(position, width, height, color, "block"); // Llama al constructor de la clase padre, es decir GameObject
         this.visible = true;
+        this.special = false;
+        this.hits = 1;
     }
 
     deleteBlock()
@@ -112,6 +119,7 @@ const leftBorder = new GameObject(new Vec(canvasWidth - 10, 0), 10, canvasHeight
 
 const labelBlocks = new TextLabel(25, 50, "40px Ubuntu Mono", "white");
 const labelLife = new TextLabel(canvasWidth - 175, 50, "40px Ubuntu Mono", "white");
+const labelGameOver = new TextLabel(canvasWidth / 8, canvasHeight / 2 + 100, "50px Ubuntu Mono", "rgb(255, 184, 224)");
 
 function createBlocks()
 {
@@ -134,14 +142,33 @@ function createBlocks()
         x = 20; // Cuando se crea un renglon completo, x vuelve a la pos inicial
         y += 30; // Se cambia la pos en y para que el espaciado sea de 10
     }
+    createSpecial();
 
 }
 
-function resetGame()
+function createSpecial() 
 {
+    // Hacer 25% de los bloques especiales
+    for (let i = 0; i < Math.floor(totalBlocks * 0.25); i++)
+    {
+        let pos = Math.floor(Math.random() * ((totalBlocks-1) - 0)) + 0; // https://coreui.io/blog/how-to-generate-a-random-number-in-javascript/#:~:text=How%20can%20I%20generate%20a,adjust%20the%20formula%20to%3A%20Math.
+        blocks[pos].special = true;
+        blocks[pos].color = "#EC7FA9";
+        blocks[pos].hits = 2;
+    }
+}
+
+function resetGame(fullReset = false)
+{
+    blocks = []; 
     createBlocks();
     box.reset();
-    paddle.reset();
+    paddle.reset();   
+    if (fullReset) {
+        gameOver = false;
+        score = 0;
+        lives = 3;
+    }
 }
 
 function main() {
@@ -155,10 +182,12 @@ function main() {
 
     // Crear los bloques
     createBlocks();
-
+    
     drawScene(0);
+    
     createEventListeners();
 }
+
 
 function createEventListeners() 
 {
@@ -167,6 +196,8 @@ function createEventListeners()
             paddle.velocity = new Vec(-paddleVelocity, 0);
         } else if (event.key == 's' || event.code == 'ArrowRight'){
             paddle.velocity = new Vec(paddleVelocity, 0);
+        } else if (event.code == 'Tab'){
+            resetGame(true);
         }
     });
 
@@ -178,105 +209,116 @@ function createEventListeners()
         }
 
         if(event.code == 'Space' && !box.inPlay) {
-            box.initVelocity();
+            if (!gameOver)
+            {
+                box.initVelocity();
+            }
         }
     });
-
 }
 
+
+
 function drawScene(newTime) 
-{
+
+{        
     if (oldTime == undefined)
-    {
-        oldTime = newTime
-    }
-    let deltaTime = newTime - oldTime;
-
-    // Clean the canvas so we can draw everything again
-    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+        {
+            oldTime = newTime
+        }
+        let deltaTime = newTime - oldTime;
     
-    labelBlocks.draw(ctx, `${score}`);
-    labelLife.draw(ctx, `Lives: ${lives}`);
-    paddle.draw(ctx);
-    upperBorder.draw(ctx);
-    downBorder.draw(ctx);
-    rightBorder.draw(ctx);
-    leftBorder.draw(ctx);
-     // Dibujar los bloques
-    for (let i=0; i < blocks.length; i++)
-    {
-        blocks[i].draw(ctx);
-    }
-    box.draw(ctx);
-
-    // Update the properties of the object
-    box.update(deltaTime);
-    paddle.update(deltaTime);
-
-    if (boxOverlap(box, paddle)){
-        box.velocity.y *= -1;
-        if(box.position.x > paddle.position.x + paddle.width / 2 && box.velocity.x < 0)
+        // Clean the canvas so we can draw everything again
+        ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+        
+        labelBlocks.draw(ctx, `${score}`);
+        labelLife.draw(ctx, `Lives: ${lives}`);
+        paddle.draw(ctx);
+        upperBorder.draw(ctx);
+        downBorder.draw(ctx);
+        rightBorder.draw(ctx);
+        leftBorder.draw(ctx);
+         // Dibujar los bloques
+        for (let i=0; i < blocks.length; i++)
         {
+            blocks[i].draw(ctx);
+        }
+        box.draw(ctx);
+    
+        // Update the properties of the object
+        box.update(deltaTime);
+        paddle.update(deltaTime);
+    
+        if (boxOverlap(box, paddle)){
+            const hitPosition = (box.position.x + box.width/2 - paddle.position.x) / paddle.width;
+        
+            const bounceAngle = (hitPosition * 120 - 60) * (Math.PI / 180); 
+        
+            const speed = box.velocity.magnitude();
+            box.velocity.x = Math.sin(bounceAngle) * speed;
+            box.velocity.y = -Math.abs(Math.cos(bounceAngle) * speed);
+        } 
+    
+        if (boxOverlap(box, upperBorder)){
+            box.velocity.y *= -1; 
+        } else if (boxOverlap(box, leftBorder) || boxOverlap(box, rightBorder)) {
             box.velocity.x *= -1;
         }
-        else if (box.position.x < paddle.position.x + paddle.width / 2 && box.velocity.x > 0)
+    
+        if (boxOverlap(box, downBorder)){
+            box.reset();
+            paddle.reset();
+            lives--;
+        } 
+    
+        for (let i=0; i< blocks.length; i++)
         {
-            box.velocity.x *= -1;
+            if (boxOverlap(box, blocks[i]) && blocks[i].visible == true){
+                blocks[i].hits--;
+                box.velocity.y *= -1;
+                blocks[i].color ="rgb(255, 184, 224)";
+                if (blocks[i].hits <= 0)
+                {
+                    blocks[i].deleteBlock();
+                    score++;
+                    break;
+                }
+                break;
+            }
+            
         }
-    } 
-
-    if (boxOverlap(box, upperBorder)){
-        box.velocity.y *= -1; 
-    } else if (boxOverlap(box, leftBorder) || boxOverlap(box, rightBorder)) {
-        box.velocity.x *= -1;
-    }
-
-    if (boxOverlap(box, downBorder)){
-        box.reset();
-        paddle.reset();
-        lives--;
-    } 
-
-    for (let i=0; i< blocks.length; i++)
-    {
-        if (boxOverlap(box, blocks[i]) && blocks[i].visible == true){
-            blocks[i].deleteBlock();
-            score++;
-            box.velocity.y *= -1;
-            break;
+    
+        if (lives == 0) 
+        {
+            gameOver = true;
         }
         
-    }
-
-    if (lives == 0){
-        // Show score making the screen show game over for 5s and then reset the game
-        /*
-        ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-        ctx.fillStyle = "white";
-        ctx.font = "40px Ubuntu Mono";
-        ctx.fillText(`Game Over`, canvasWidth / 2 - 100, canvasHeight / 2);
-        setTimeout(resetGame, 10000);
-        */
-        score = 0;
-        lives = 3;
-        resetGame();
-    }
-
-    let allBlocksDestroyed = true;
-    for (let i = 0; i < blocks.length; i++) {
-        if (blocks[i].visible) {
-            allBlocksDestroyed = false;
-            break;
+        // Handle game over state
+        if (gameOver) 
+        {
+            labelGameOver.draw(ctx, `Game over press Tab to restart`);
+        
+            oldTime = newTime;
+            requestAnimationFrame(drawScene);
+            return;
         }
-    }
     
-    if (allBlocksDestroyed) {
-        resetGame();
-    }
-
-    oldTime = newTime;
-
-    requestAnimationFrame(drawScene);
+        let allBlocksDestroyed = true;
+        for (let i = 0; i < blocks.length; i++) {
+            if (blocks[i].visible) {
+                allBlocksDestroyed = false;
+                break;
+            }
+        }
+        
+        if (allBlocksDestroyed) {
+            resetGame();
+        }
+    
+        oldTime = newTime;
+    
+        requestAnimationFrame(drawScene);
+    
 }
 
 
