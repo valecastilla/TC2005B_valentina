@@ -1,0 +1,37 @@
+body{
+    background-color: grey;
+    height: 100vh;
+}
+
+.gridClass{
+    color: white;
+
+    background-color: black;
+    padding: 10px;
+    border: 3px solid white;
+
+}
+.gridContainer{
+    height: calc(100% - 16px);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 2fr 1fr 1fr 1fr;
+    gap: 10px;
+
+    grid-template-areas: 
+    "header header"
+    ". main s"
+    ". main ."
+    ". main ."
+    ". . ."
+    ". . .";
+}
+
+#gridItem1{
+    grid-area:  header ;
+}
+
+
+#gridItem2{
+    grid-area:  main ;
+}
