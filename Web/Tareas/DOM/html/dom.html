@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Respuestas - DOM y Eventos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        code {
+            background-color: #f5f5f5;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .reference {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 10px;
+            border-top: 1px solid #eee;
+            padding-top: 5px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 15px 0;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ddd;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        img {
+            max-width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Eventos y DOM - Respuestas</h1>
+
+    <div class="container">
+        <h2>Preguntas</h2>
+
+        <h3>1. ¿Qué es el DOM?</h3>
+        <p>El DOM (Document Object Model) es una representación en memoria de un documento HTML como un árbol de
+            objetos. Proporciona una interfaz de programación que permite que los scripts (generalmente JavaScript)
+            accedan y manipulen el contenido, la estructura y el estilo de un documento web.</p>
+        <p>El DOM representa cada elemento HTML como un nodo en una estructura de árbol, permitiendo a los
+            desarrolladores utilizar métodos y propiedades para acceder, modificar, añadir o eliminar elementos del
+            documento.</p>
+        <div class="reference">
+            Referencia: <a href="https://developer.mozilla.org/es/docs/Web/API/Document_Object_Model/Introduction"
+                target="_blank">MDN Web Docs - Introducción al DOM</a>
+        </div>
+
+        <h3>2. ¿Qué es un nodo?</h3>
+        <p>Un nodo es cualquier objeto dentro del árbol del DOM. Existen varios tipos de nodos, siendo los más comunes:
+        </p>
+        <ul>
+            <li><strong>Nodos de elemento</strong>: Representan las etiquetas HTML (divs, párrafos, encabezados, etc.)
+            </li>
+            <li><strong>Nodos de texto</strong>: Contienen el texto dentro de los elementos</li>
+            <li><strong>Nodos de atributo</strong>: Representan los atributos de los elementos HTML</li>
+            <li><strong>Nodos de comentario</strong>: Representan los comentarios en el HTML</li>
+            <li><strong>Nodo documento</strong>: El nodo raíz que representa el documento entero</li>
+        </ul>
+        <p>Cada nodo puede tener relaciones con otros nodos: padres, hijos y hermanos, formando así la estructura
+            jerárquica del documento.</p>
+        <div class="reference">
+            Referencia: <a href="https://developer.mozilla.org/es/docs/Web/API/Node" target="_blank">MDN Web Docs -
+                Node</a>
+        </div>
+
+        <h3>3. ¿Cómo se accede a un elemento del DOM?</h3>
+        <p>Existen varios métodos para acceder a elementos del DOM:</p>
+        <ul>
+            <li><code>document.getElementById("id")</code>: Devuelve el elemento con el ID especificado</li>
+            <li><code>document.getElementsByClassName("clase")</code>: Devuelve una colección HTML de elementos con la
+                clase especificada</li>
+            <li><code>document.getElementsByTagName("etiqueta")</code>: Devuelve una colección de elementos con la
+                etiqueta especificada</li>
+            <li><code>document.querySelector("selector")</code>: Devuelve el primer elemento que coincide con el
+                selector CSS especificado</li>
+            <li><code>document.querySelectorAll("selector")</code>: Devuelve todos los elementos que coinciden con el
+                selector CSS especificado</li>
+        </ul>
+        <p>Ejemplo:</p>
+        <pre><code>// Acceder a un elemento por ID
+const elemento = document.getElementById("miElemento");
+
+// Acceder al primer párrafo de una clase específica
+const primerParrafo = document.querySelector("p.miClase");</code></pre>
+        <div class="reference">
+            Referencia: <a href="https://developer.mozilla.org/es/docs/Web/API/Document/querySelector"
+                target="_blank">MDN Web Docs - Document methods</a>
+        </div>
+
+        <h3>4. ¿Cómo se modifica un elemento del DOM?</h3>
+        <p>Una vez que tienes acceso a un elemento del DOM, puedes modificarlo de varias maneras:</p>
+        <ul>
+            <li>Modificar el contenido: <code>elemento.textContent</code>, <code>elemento.innerHTML</code></li>
+            <li>Modificar atributos: <code>elemento.setAttribute("atributo", "valor")</code></li>
+            <li>Modificar estilos: <code>elemento.style.propiedad = "valor"</code></li>
+            <li>Añadir/eliminar clases: <code>elemento.classList.add("clase")</code>,
+                <code>elemento.classList.remove("clase")</code></li>
+            <li>Crear nuevos elementos: <code>document.createElement("etiqueta")</code></li>
+            <li>Añadir elementos: <code>padre.appendChild(hijo)</code>,
+                <code>padre.insertBefore(nuevo, referencia)</code></li>
+            <li>Eliminar elementos: <code>padre.removeChild(hijo)</code> o <code>elemento.remove()</code></li>
+        </ul>
+        <p>Ejemplo:</p>
+        <pre><code>// Modificar el texto de un elemento
+document.getElementById("miElemento").textContent = "Nuevo texto";
+
+// Cambiar el color de fondo
+document.querySelector(".miClase").style.backgroundColor = "blue";
+
+// Añadir una clase
+document.getElementById("miElemento").classList.add("destacado");</code></pre>
+        <div class="reference">
+            Referencia: <a href="https://developer.mozilla.org/es/docs/Web/API/Element" target="_blank">MDN Web Docs -
+                Element</a>
+        </div>
+
+        <h3>5. ¿Cuál es la diferencia entre getElementby* y querySelector*?</h3>
+        <p>Las principales diferencias son:</p>
+        <table>
+            <tr>
+                <th>getElementBy*</th>
+                <th>querySelector*</th>
+            </tr>
+            <tr>
+                <td>Métodos específicos para cada tipo de selección (ID, clase, etiqueta)</td>
+                <td>Método único que acepta cualquier selector CSS válido</td>
+            </tr>
+            <tr>
+                <td>Devuelve HTMLCollection (viva/dinámica)</td>
+                <td>Devuelve NodeList (estática)</td>
+            </tr>
+            <tr>
+                <td>Generalmente más rápido para selecciones simples</td>
+                <td>Más versátil pero puede ser menos eficiente</td>
+            </tr>
+            <tr>
+                <td>No permite selectores complejos</td>
+                <td>Permite selectores CSS complejos (combinadores, pseudo-clases, etc.)</td>
+            </tr>
+        </table>
+        <p>Por ejemplo, para seleccionar todos los párrafos dentro de un div con clase "contenido":</p>
+        <pre><code>// Con getElementBy* requeriría múltiples pasos
+const divs = document.getElementsByClassName("contenido");
+for (const div of divs) {
+    const parrafos = div.getElementsByTagName("p");
+    // hacer algo con los párrafos
+}
+
+// Con querySelector* en un solo paso
+const parrafos = document.querySelectorAll("div.contenido p");</code></pre>
+        <div class="reference">
+            Referencia: <a href="https://developer.mozilla.org/es/docs/Web/API/Document/querySelector"
+                target="_blank">MDN Web Docs - Comparación de métodos de selección</a>
+        </div>
+
+        <h3>6. ¿Qué es un evento?</h3>
+        <p>Un evento es una señal que indica que algo ha ocurrido en la página web. Los eventos pueden ser generados por
+            el usuario (como clics, movimientos del ratón, pulsaciones de teclas) o por el navegador (como la carga de
+            la página, cambios en el tamaño de la ventana). Los eventos permiten que el código JavaScript responda a
+            estas acciones de manera dinámica.</p>
+        <p>Algunos eventos comunes incluyen:</p>
+        <ul>
+            <li><code>click</code>: Se dispara cuando se hace clic en un elemento</li>
+            <li><code>mouseover</code>, <code>mouseout</code>: Se disparan cuando el puntero entra o sale de un elemento
+            </li>
+            <li><code>keydown</code>, <code>keyup</code>: Se disparan cuando se presiona o suelta una tecla</li>
+            <li><code>submit</code>: Se dispara cuando se envía un formulario</li>
+            <li><code>load</code>: Se dispara cuando el documento o un recurso ha terminado de cargar</li>
+        </ul>
+        <div class="reference">
+            Referencia: <a href="https://developer.mozilla.org/es/docs/Web/Events" target="_blank">MDN Web Docs -
+                Referencia de eventos</a>
+        </div>
+
+        <h3>7. ¿Qué es un listener?</h3>
+        <p>Un listener (o escuchador de eventos) es una función que "escucha" un evento específico y ejecuta código en
+            respuesta cuando ese evento ocurre. Los listeners permiten crear interactividad en las páginas web, haciendo
+            que respondan a las acciones del usuario o a otros eventos del navegador.</p>
+        <p>En JavaScript, se añaden listeners a los elementos utilizando el método <code>addEventListener()</code>:</p>
+        <pre><code>// Sintaxis básica
+elemento.addEventListener(tipoDeEvento, funcionCallback);
+
+// Ejemplo práctico
+const boton = document.getElementById("miBoton");
+boton.addEventListener("click", function() {
+    alert("¡Has hecho clic en el botón!");
+});</code></pre>
+        <p>También es posible eliminar listeners con <code>removeEventListener()</code>.</p>
+        <div class="reference">
+            Referencia: <a href="https://developer.mozilla.org/es/docs/Web/API/EventTarget/addEventListener"
+                target="_blank">MDN Web Docs - addEventListener</a>
+        </div>
+
+        <h3>8. ¿Qué es un callback?</h3>
+        <p>Un callback es una función que se pasa como argumento a otra función para ser ejecutada posteriormente. En el
+            contexto de eventos del DOM, un callback es la función que se ejecutará cuando ocurra el evento
+            especificado.</p>
+        <p>Los callbacks son fundamentales en JavaScript debido a su naturaleza asíncrona, permitiendo que el código
+            responda a eventos futuros sin bloquear la ejecución del programa.</p>
+        <pre><code>// Ejemplo de función callback en un evento
+document.getElementById("miBoton").addEventListener("click", function(event) {
+    // Esta función es el callback que se ejecutará cuando ocurra el clic
+    console.log("El botón fue clickeado");
+    console.log("Objeto de evento:", event);
+});
+
+// Otro ejemplo con una función nombrada como callback
+function manejarClic(event) {
+    console.log("Clic detectado");
+}
+
+document.getElementById("otroBoton").addEventListener("click", manejarClic);</code></pre>
+        <div class="reference">
+            Referencia: <a href="https://developer.mozilla.org/es/docs/Glossary/Callback_function" target="_blank">MDN
+                Web Docs - Función callback</a>
+        </div>
+
+        <h3>9. ¿Qué es un objeto de evento?</h3>
+        <p>Un objeto de evento es un objeto que se crea automáticamente cuando ocurre un evento y se pasa como primer
+            argumento a la función callback. Este objeto contiene información detallada sobre el evento ocurrido, como:
+        </p>
+        <ul>
+            <li><code>event.target</code>: El elemento que disparó el evento</li>
+            <li><code>event.type</code>: El tipo de evento (click, mouseover, etc.)</li>
+            <li><code>event.clientX/Y</code>: Las coordenadas del ratón (en eventos de ratón)</li>
+            <li><code>event.key</code>: La tecla presionada (en eventos de teclado)</li>
+            <li><code>event.preventDefault()</code>: Método para cancelar el comportamiento predeterminado</li>
+            <li><code>event.stopPropagation()</code>: Método para detener la propagación del evento</li>
+        </ul>
+        <p>Ejemplo de uso:</p>
+        <pre><code>document.body.addEventListener("click", function(event) {
+    // Muestra las coordenadas del clic
+    console.log(`Clic en coordenadas: X=${event.clientX}, Y=${event.clientY}`);
+    
+    // Muestra el elemento que recibió el clic
+    console.log("Elemento clickeado:", event.target);
+    
+    // Si el elemento clickeado es un enlace, previene la navegación
+    if (event.target.tagName === "A") {
+        event.preventDefault();
+        console.log("Navegación prevenida");
+    }
+});</code></pre>
+        <div class="reference">
+            Referencia: <a href="https://developer.mozilla.org/es/docs/Web/API/Event" target="_blank">MDN Web Docs -
+                Event</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Ejercicios de código</h2>
+
+        <h3>Soluciones</h3>
+
+        <h4>1. Mostrar la posición del mouse</h4>
+        <pre><code>// JavaScript para mostrar la posición del mouse
+document.addEventListener("mousemove", function(event) {
+    // Seleccionar el elemento donde mostraremos la posición
+    const mousePositionElement = document.getElementById("mousePosition");
+    
+    // Actualizar el contenido con las coordenadas actuales
+    mousePositionElement.textContent = `Posición del mouse: X=${event.clientX}, Y=${event.clientY}`;
+});</code></pre>
+
+        <h4>2. Obtener nombre y apellido de un formulario</h4>
+        <pre><code>// JavaScript para manejar el envío del formulario
+document.getElementById("form1").addEventListener("submit", function(event) {
+    // Prevenir el comportamiento predeterminado del formulario (recargar la página)
+    event.preventDefault();
+    
+    // Obtener los valores de los campos de texto
+    const firstName = document.getElementById("form-fname").value;
+    const lastName = document.getElementById("form-lname").value;
+    
+    // Verificar si ya existe un elemento con el nombre completo
+    let fullNameElement = document.getElementById("fullName");
+    
+    if (!fullNameElement) {
+        // Si no existe, crear un nuevo elemento para mostrar el nombre completo
+        fullNameElement = document.createElement("p");
+        fullNameElement.id = "fullName";
+        
+        // Insertar el elemento después del botón de envío
+        const submitButton = document.getElementById("form1-submit");
+        submitButton.parentNode.insertBefore(fullNameElement, submitButton.nextSibling);
+    }
+    
+    // Actualizar el contenido con el nombre completo
+    fullNameElement.textContent = `Nombre completo: ${firstName} ${lastName}`;
+});</code></pre>
+
+        <h4>3. Agregar filas o columnas a una tabla</h4>
+        <pre><code>// JavaScript para insertar filas y columnas en una tabla
+// Función para insertar una fila
+document.getElementById("btn-insert-r").addEventListener("click", function() {
+    // Obtener referencia a la tabla
+    const table = document.getElementById("sampleTable");
+    
+    // Obtener el número de columnas de la primera fila
+    const columns = table.rows[0].cells.length;
+    
+    // Crear una nueva fila
+    const newRow = table.insertRow();
+    
+    // Añadir celdas a la nueva fila
+    for (let i = 0; i < columns; i++) {
+        const cell = newRow.insertCell();
+        const rowIndex = table.rows.length - 1;
+        cell.textContent = `Row ${rowIndex + 1} column ${i + 1}`;
+    }
+});
+
+// Función para insertar una columna
+document.getElementById("btn-insert-c").addEventListener("click", function() {
+    // Obtener referencia a la tabla
+    const table = document.getElementById("sampleTable");
+    
+    // Obtener el número de filas
+    const rows = table.rows.length;
+    
+    // Para cada fila, añadir una nueva celda
+    for (let i = 0; i < rows; i++) {
+        const cell = table.rows[i].insertCell();
+        const columnIndex = table.rows[i].cells.length - 1;
+        cell.textContent = `Row ${i + 1} column ${columnIndex + 1}`;
+    }
+});</code></pre>
+
+        <h4>4. Actualizar celda específica de una tabla</h4>
+        <pre><code>// JavaScript para cambiar el contenido de una celda específica
+document.getElementById("btn-change").addEventListener("click", function() {
+    // Obtener referencia a la tabla
+    const table = document.getElementById("myTable");
+    
+    // Obtener los valores de los campos de entrada
+    const rowIndex = parseInt(document.getElementById("rowIndex").value);
+    const colIndex = parseInt(document.getElementById("colIndex").value);
+    const newValue = document.getElementById("newValue").value;
+    
+    // Verificar que los índices sean números válidos
+    if (isNaN(rowIndex) || isNaN(colIndex)) {
+        alert("Por favor, ingresa índices de fila y columna válidos (números).");
+        return;
+    }
+    
+    // Verificar que los índices estén dentro de los límites de la tabla
+    if (rowIndex < 0 || rowIndex >= table.rows.length || colIndex < 0 || colIndex >= table.rows[0].cells.length) {
+        alert(`Índices fuera de rango. La tabla tiene ${table.rows.length} filas y ${table.rows[0].cells.length} columnas.`);
+        return;
+    }
+    
+    // Actualizar el contenido de la celda
+    table.rows[rowIndex].cells[colIndex].textContent = newValue;
+    
+    // Limpiar los campos de entrada
+    document.getElementById("rowIndex").value = "";
+    document.getElementById("colIndex").value = "";
+    document.getElementById("newValue").value = "";
+});</code></pre>
+
+        <h4>5. Agregar o quitar colores de una lista de selección</h4>
+        <pre><code>// JavaScript para agregar o quitar colores de una lista de selección
+// Colores aleatorios que se pueden añadir
+const availableColors = [
+    "Blue", "Purple", "Yellow", "Orange", "Pink", 
+    "Brown", "Cyan", "Magenta", "Lime", "Indigo", 
+    "Teal", "Violet", "Coral", "Gold", "Silver"
+];
+
+// Función para agregar un color
+document.getElementById("btn-add-color").addEventListener("click", function() {
+    // Obtener referencia al select
+    const colorSelect = document.getElementById("colorSelect");
+    
+    // Generar un color aleatorio
+    const randomIndex = Math.floor(Math.random() * availableColors.length);
+    const randomColor = availableColors[randomIndex];
+    
+    // Verificar si el color ya existe en la lista
+    let colorExists = false;
+    for (let i = 0; i < colorSelect.options.length; i++) {
+        if (colorSelect.options[i].text === randomColor) {
+            colorExists = true;
+            break;
+        }
+    }
+    
+    // Si el color no existe, añadirlo
+    if (!colorExists) {
+        const newOption = new Option(randomColor, randomColor);
+        colorSelect.add(newOption);
+    } else {
+        // Si el color ya existe, intentar con otro
+        alert(`El color ${randomColor} ya existe en la lista. Prueba de nuevo.`);
+    }
+});
+
+// Función para quitar un color
+document.getElementById("btn-rmv-color").addEventListener("click", function() {
+    // Obtener referencia al select
+    const colorSelect = document.getElementById("colorSelect");
+    
+    // Verificar que haya al menos un color para eliminar
+    if (colorSelect.options.length > 0) {
+        // Eliminar el color seleccionado
+        colorSelect.remove(colorSelect.selectedIndex);
+    } else {
+        alert("No hay colores para eliminar.");
+    }
+});</code></pre>
+
+        <h4>6. Cambiar tamaño de imagen al pasar el mouse</h4>
+        <pre><code>// JavaScript para cambiar el tamaño de la imagen al pasar el mouse
+document.getElementById("imagenGato").addEventListener("mouseenter", function() {
+    // Generar dimensiones aleatorias entre 300 y 600
+    const randomWidth = Math.floor(Math.random() * 301) + 300;  // 300-600
+    const randomHeight = Math.floor(Math.random() * 301) + 300; // 300-600
+    
+    // Crear una nueva URL con las dimensiones aleatorias
+    const newImageUrl = `http://placekitten.com/${randomWidth}/${randomHeight}`;
+    
+    // Cambiar la fuente de la imagen
+    this.src = newImageUrl;
+    
+    // Opcionalmente, actualizar el ancho y alto del elemento img
+    this.width = randomWidth;
+    this.height = randomHeight;
+});</code></pre>
+    </div>
+
+    <div class="container">
+        <h2>Conclusiones</h2>
+
+        <h3>Experiencia general</h3>
+        <p>Utilizar ChatGPT y GitHub Copilot para resolver los ejercicios de DOM y eventos resultó ser una experiencia
+            muy eficiente. Las herramientas proporcionaron soluciones completas y explicaciones detalladas. ChatGPT fue
+            excelente para obtener respuestas conceptuales a las preguntas, mientras que Copilot demostró ser más útil
+            durante la escritura de código en tiempo real. Cuando use claude llego al limite, tuve que pedirle que modificara el 
+            codigo para que fuera mas agradable con el usuario
+        </p>
+        <p>La precisión de las respuestas fue notable, especialmente en términos de seguir las mejores prácticas y
+            proporcionar código que funciona correctamente. La capacidad de estas herramientas para entender el contexto
+            y proporcionar soluciones adaptadas a necesidades específicas resultó impresionante.</p>
+
+        <h3>¿Cuándo y para qué usarías ChatGPT y cuándo Copilot?</h3>
+        <p><strong>ChatGPT:</strong></p>
+        <ul>
+            <li>Para obtener explicaciones detalladas sobre conceptos (como las preguntas sobre DOM)</li>
+            <li>Para resolver problemas específicos donde necesito una solución completa con explicaciones</li>
+            <li>Para aprender sobre nuevas tecnologías o enfoques</li>
+            <li>Para depurar código existente o encontrar errores en lógica</li>
+            <li>Para crear estructuras de código desde cero cuando no estoy seguro por dónde empezar</li>
+        </ul>
+
+        <p><strong>GitHub Copilot:</strong></p>
+        <ul>
+            <li>Durante la escritura activa de código, cuando ya tengo una idea clara de lo que quiero hacer</li>
+            <li>Para completar patrones repetitivos o estructuras comunes</li>
+            <li>Para sugerir nombres de variables o funciones mientras programo</li>
+            <li>Para implementaciones rápidas de funcionalidades estándar (como los ejercicios de DOM)</li>
+            <li>Para trabajar con APIs o librerías con las que no estoy completamente familiarizado</li>
+        </ul>
+
+        <h3>Ventajas de usar AI para programar</h3>
+        <ul>
+            <li><strong>Eficiencia:</strong> Reduce significativamente el tiempo necesario para implementar
+                funcionalidades estándar</li>
+            <li><strong>Aprendizaje acelerado:</strong> Expone a patrones y técnicas que podrían no conocerse
+                previamente</li>
+            <li><strong>Reducción de errores:</strong> La AI suele seguir buenas prácticas y evita errores comunes</li>
+            <li><strong>Superación de bloqueos:</strong> Ayuda a superar momentos donde no sabes cómo continuar</li>
+            <li><strong>Consistencia:</strong> El código generado sigue patrones consistentes</li>
+            <li><strong>Exploración de alternativas:</strong> Facilita ver diferentes enfoques para resolver un mismo
+                problema</li>
+        </ul>
+
+        <h3>Desventajas de usar AI para programar</h3>
+        <ul>
+            <li><strong>Dependencia:</strong> Puede crear una dependencia que disminuya las habilidades de resolución de
+                problemas sin asistencia</li>
+            <li><strong>Comprensión superficial:</strong> El uso excesivo puede llevar a implementar soluciones sin
+                entender completamente cómo funcionan</li>
+            <li><strong>Soluciones genéricas:</strong> A veces la AI proporciona soluciones estándar que no son óptimas
+                para casos específicos</li>
+            <li><strong>Falsa confianza:</strong> El código puede parecer correcto pero contener errores sutiles o
+                problemas de seguridad</li>
+            <li><strong>Limitaciones contextuales:</strong> La AI no siempre comprende completamente el contexto más
+                amplio del proyecto</li>
+            <li><strong>Posible obsolescencia de habilidades:</strong> Confiar demasiado en la AI podría limitar el
+                desarrollo de ciertas habilidades técnicas fundamentales</li>
+        </ul>
+    </div>
+
+    <script>
+        // 1. Mostrar la posición del mouse
+        document.addEventListener("mousemove", function (event) {
+            const mousePositionElement = document.getElementById("mousePosition");
+            mousePositionElement.textContent = `Posición del mouse: X=${event.clientX}, Y=${event.clientY}`;
+        });
+
+        // 2. Obtener nombre y apellido de un formulario
+        document.getElementById("form1").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const firstName = document.getElementById("form-fname").value;
+            const lastName = document.getElementById("form-lname").value;
+
+            let fullNameElement = document.getElementById("fullName");
+
+            if (!fullNameElement) {
+                fullNameElement = document.createElement("p");
+                fullNameElement.id = "fullName";
+
+                const submitButton = document.getElementById("form1-submit");
+                submitButton.parentNode.insertBefore(fullNameElement, submitButton.nextSibling);
+            }
+
+            fullNameElement.textContent = `Nombre completo: ${firstName} ${lastName}`;
+        });
+
+        // 3. Agregar filas o columnas a una tabla
+        document.getElementById("btn-insert-r").addEventListener("click", function () {
+            const table = document.getElementById("sampleTable");
+            const columns = table.rows[0].cells.length;
+            const newRow = table.insertRow();
+
+            for (let i = 0; i < columns; i++) {
+                const cell = newRow.insertCell();
+                const rowIndex = table.rows.length - 1;
+                cell.textContent = `Row ${rowIndex + 1} column ${i + 1}`;
+            }
+        });
+
+        document.getElementById("btn-insert-c").addEventListener("click", function () {
+            const table = document.getElementById("sampleTable");
+            const rows = table.rows.length;
+
+            for (let i = 0; i < rows; i++) {
+                const cell = table.rows[i].insertCell();
+                const columnIndex = table.rows[i].cells.length - 1;
+                cell.textContent = `Row ${i + 1} column ${columnIndex + 1}`;
+            }
+        });
+
+        // 4. Actualizar celda específica de una tabla
+        document.getElementById("btn-change").addEventListener("click", function () {
+            const table = document.getElementById("myTable");
+
+            const rowIndex = parseInt(document.getElementById("rowIndex").value);
+            const colIndex = parseInt(document.getElementById("colIndex").value);
+            const newValue = document.getElementById("newValue").value;
+
+            if (isNaN(rowIndex) || isNaN(colIndex)) {
+                alert("Por favor, ingresa índices de fila y columna válidos (números).");
+                return;
+            }
+
+            if (rowIndex < 0 || rowIndex >= table.rows.length || colIndex < 0 || colIndex >= table.rows[0].cells.length) {
+                alert(`Índices fuera de rango. La tabla tiene ${table.rows.length} filas y ${table.rows[0].cells.length} columnas.`);
+                return;
+            }
+
+            table.rows[rowIndex].cells[colIndex].textContent = newValue;
+
+            document.getElementById("rowIndex").value = "";
+            document.getElementById("colIndex").value = "";
+            document.getElementById("newValue").value = "";
+        });
+
+        // 5. Agregar o quitar colores de una lista de selección
+        const availableColors = [
+            "Blue", "Purple", "Yellow", "Orange", "Pink",
+            "Brown", "Cyan", "Magenta", "Lime", "Indigo",
+            "Teal", "Violet", "Coral", "Gold", "Silver"
+        ];
+
+        document.getElementById("btn-add-color").addEventListener("click", function () {
+            const colorSelect = document.getElementById("colorSelect");
+
+            const randomIndex = Math.floor(Math.random() * availableColors.length);
+            const randomColor = availableColors[randomIndex];
+
+            let colorExists;
+        });
+
+    </script>
+</body>

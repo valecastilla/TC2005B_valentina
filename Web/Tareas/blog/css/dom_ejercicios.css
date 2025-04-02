@@ -1,0 +1,83 @@
+:root {
+    --primary: rgb(181, 136, 136);
+    --secondary: rgb(227, 156, 136);
+    --background: #f1dad4;
+    --border: rgb(207, 158, 144);
+    --primary: rgb(181, 136, 136);
+}
+
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.container {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+h1, h2, h3 {
+    color: var(--primary);
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+}
+
+table, th, td {
+    border: 1px solid var(--border);
+}
+
+td {
+    padding: 8px;
+    text-align: center;
+}
+
+input[type="text"], input[type="button"], input[type="submit"] {
+    padding: 5px 10px;
+    margin: 5px;
+}
+
+#mousePosition {
+    font-family: monospace;
+    font-weight: bold;
+}
+
+#fullName {
+    font-weight: bold;
+    color: green;
+}
+
+#imagenGato {
+    display: block;
+    margin: 10px 0;
+    transition: all 0.3s ease;
+}
+
+footer {
+    border: var(--border) 3px solid;
+    border-radius: 15px;
+    background-color: var(--background);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    margin-bottom: 15px;
+    margin-top: 20px;
+    padding: 20px;
+    text-align: center;
+}
+
+footer a {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--primary);
+    padding: 10px 50px;
+}
+
+
+

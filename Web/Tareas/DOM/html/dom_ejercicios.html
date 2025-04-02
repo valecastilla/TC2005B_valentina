@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Eventos y DOM</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .container {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        
+        h1, h2, h3 {
+            color: #333;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 10px 0;
+        }
+        
+        table, th, td {
+            border: 1px solid #999;
+        }
+        
+        td {
+            padding: 8px;
+            text-align: center;
+        }
+        
+        input[type="text"], input[type="button"], input[type="submit"] {
+            padding: 5px 10px;
+            margin: 5px;
+        }
+        
+        #mousePosition {
+            font-family: monospace;
+            font-weight: bold;
+        }
+        
+        #fullName {
+            font-weight: bold;
+            color: green;
+        }
+        
+        #imagenGato {
+            display: block;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+    </style>
+    <script src="../js/dom_ejercicios.js"></script>
+</head>
+
+<body>
+    <h1>Eventos y DOM - Ejercicios</h1>
+
+    <div class="container">
+        <h3>Ejercicio 1: Posición del Mouse</h3>
+        <p id="mousePosition">Posición del mouse: </p>
+    </div>
+
+    <div class="container">
+        <h3>Ejercicio 2: Formulario de Nombre Completo</h3>
+        <form id="form1">
+            First name: <input id="form-fname" type="text" name="fname"><br>
+            Last name: <input id="form-lname" type="text" name="lname"><br><br>
+            <input id="form1-submit" type="submit" value="Submit">
+        </form>
+    </div>
+
+    <div class="container">
+        <h3>Ejercicio 3: Tabla Dinámica</h3>
+        <table id="sampleTable">
+            <tr>
+                <td>Row 1 column 1</td>
+                <td>Row 1 column 2</td>
+            </tr>
+            <tr>
+                <td>Row 2 column 1</td>
+                <td>Row 2 column 2</td>
+            </tr>
+        </table><br>
+        <input id="btn-insert-r" type="button" value="Insert row">
+        <input id="btn-insert-c" type="button" value="Insert column">
+    </div>
+
+    <div class="container">
+        <h3>Ejercicio 4: Modificar Celda Específica</h3>
+        <table id="myTable">
+            <tr>
+                <td>Row1 cell1</td>
+                <td>Row1 cell2</td>
+                <td>Row1 cell3</td>
+            </tr>
+            <tr>
+                <td>Row2 cell1</td>
+                <td>Row2 cell2</td>
+                <td>Row2 cell3</td>
+            </tr>
+            <tr>
+                <td>Row3 cell1</td>
+                <td>Row3 cell2</td>
+                <td>Row3 cell3</td>
+            </tr>
+        </table><form><br>
+        <input id="rowIndex" type="text" placeholder="Row Index">
+        <input id="colIndex" type="text" placeholder="Col Index">
+        <input id="newValue" type="text" placeholder="New Value">
+        <input id="btn-change" type="button" value="Change content">
+        </form>
+    </div>
+
+    <div class="container">
+        <h3>Ejercicio 5: Lista de Colores</h3>
+        <form>
+            <select id="colorSelect">
+                <option>Red</option>
+                <option>Green</option>
+                <option>White</option>
+                <option>Black</option>
+            </select>
+            <input id="btn-add-color" type="button" value="Add color">
+            <input id="btn-rmv-color" type="button" value="Remove color">
+        </form>
+    </div>
+
+    <div class="container">
+        <h3>Ejercicio 6: Imagen con Tamaño Aleatorio</h3>
+        <p>Pasa el mouse sobre la imagen para cambiar su tamaño:</p>
+        <img id="imagenGato" src="http://placekitten.com/200/300">
+    </div>
+</body>
+</html>

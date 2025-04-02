@@ -6,13 +6,11 @@
     --primary: rgb(181, 136, 136);
 }
 
-* {
-    margin: 5px;
-}
-
 body {
     margin: 0px; 
     padding: 0px;
+    width: 100vw;
+    height: 100vh;
     font-family:Arial, Helvetica, sans-serif;
     background-color: white;
     position: relative;
@@ -88,21 +86,27 @@ nav a {
     border-radius: 1px;
     transition: background-color 0.2s ease; /*Cambiar el fondo del link*/
     font-weight: bold;
+    padding: 0px 10px;
+}
+
+nav p {
+    margin: 0px;
+    padding: 0px 10px;
 }
 
 /*Cuando se pase por encima del link se cambia su color de fondo*/
-nav a:hover {
-    background-color: rgba(255, 255, 255, 0.3);
+nav li:hover {
+    /* background-color: rgba(255, 255, 255, 0.3); */
     color: var(--primary);
     transform: scale(1.05);
     text-decoration: underline;
 }
 
 footer {
-    background-color: var(--background);
+    background-color: #f1dad485;
     text-align: center;
     margin: 0px;
-    padding: 15px;
+    padding: 10px;
     color: var(--primary)
 }
 

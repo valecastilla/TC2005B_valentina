@@ -1,0 +1,181 @@
+:root {
+    --primary: rgb(181, 136, 136);
+    --secondary: rgb(227, 156, 136);
+    --background: #f1dad4;
+    --border: rgb(207, 158, 144);
+    --primary: rgb(181, 136, 136);
+}
+
+* {
+    margin: 5px;
+}
+
+body {
+    margin: auto; /*Calcular margenes automaticamente*/
+    font-family:Arial, Helvetica, sans-serif;
+    border: #dcdcdc 2px solid;
+    border-radius: 15px;
+}
+
+h1 {
+    color: var(--primary);
+    background-color: #f1dad485;;
+    text-align: center;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease; /*Mover la pos del elemento*/
+    padding: 15px 0px;
+    border-radius: 15px;
+}
+
+h2 {
+    color: var(--secondary);
+    margin-bottom: 1px;
+    padding: 10px;
+}
+
+h3 {
+    color: var(--border);
+    margin-bottom: 1px;
+    padding: 10px;
+}
+
+pre {
+    background-color: #f1dad485;
+    border: var(--border) 1px solid;
+    padding: 15px;
+    border-radius: 5px;
+    color: var(--border);
+    width: 700px;
+}
+
+strong, li code{
+    color: var(--border);
+}
+
+p a {
+    color: var(--secondary);
+    margin: 0px;
+    text-decoration: none;
+    transition: transform 0.3s ease; /*Mover la pos del elemento*/
+    transition: background-color 0.2s ease; /*Cambiar el fondo del link*/
+}
+
+p a:hover {
+    background-color: var(--background);
+}
+
+p strong {
+    color: var(--secondary);
+    margin: 0px;
+}
+
+ul li{
+    list-style-type: none; /* Quita los bullets predeterminados */
+}
+
+/*before para que se inserte antes del elemento*/
+ul li::before {
+    content: "✦";
+    color: var(--secondary); /* Usa tu color primario */
+    padding: 15px;
+}
+
+nav {
+    border: var(--border) 3px solid;
+    border-radius: 15px;
+    background-color: var(--background);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    margin-bottom: 15px;
+    margin-top: 20px;
+    padding: 20px 10px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+nav a {
+    color: var(--primary);
+}
+
+
+
+.reference a {
+    color: var(--primary);
+    text-decoration: none; /*Quitar el subrayado del link*/
+    border-radius: 1px;
+    transition: background-color 0.2s ease; /*Cambiar el fondo del link*/
+}
+
+/*Cuando se pase por encima del link se cambia su color de fondo*/
+.reference a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Cuando se pase encima del objeto (hover) este se mueve en el eje y 1px s*/
+h1:hover {
+    transform: translateY(-1px);
+}
+
+table {
+    box-shadow: 2px 2px 8px var(--background);
+    margin: 10px 0px;
+}
+
+table, th, td {
+  border: 1px solid var(--primary);
+  border-radius: 1px;
+}
+
+th, td {
+    border-bottom: 1px solid rgba(240, 240, 240, 0.338);
+    padding: 10px; 
+    text-align: left;
+}
+
+th {
+    background-color: var(--background);
+    color: var(--primary);
+    padding: 12px;
+    border-radius: 5px 5px 0 0;
+}
+
+
+table tr strong {
+    color: var(--secondary)
+}
+
+tbody th:hover, tr:hover {
+    background-color: var(--background);
+}
+
+.pregunta {
+    margin: 30px 50px;
+    text-align: justify;
+}
+
+.conclusion {
+    margin: 30px 50px;
+    text-align: justify;
+}
+
+.seccion {
+    margin: 30px 0px;
+    text-align: justify;
+}
+
+a {
+    color: var(--secondary);
+    margin: 0px;
+    text-decoration: none;
+    transition: transform 0.3s ease; /*Mover la pos del elemento*/
+    transition: background-color 0.2s ease; /*Cambiar el fondo del link*/
+}
+
+a:hover {
+    background-color: var(--background);
+}
+
+.ejercicios {
+    margin: 30px 50px;
+    text-align: justify;
+}

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Respuestas - DOM y Eventos</title>
+    <link rel="stylesheet" href="../css/dom.css">
+</head>
+
+<body>
+    <h1>Eventos y DOM</h1>
+    <div class="pregunta">
+        <h3>1. ¿Qué es el DOM?</h3>
+        <p>El DOM (Document Object Model) es una representación en memoria de un documento HTML como un árbol de
+            objetos. Proporciona una interfaz de programación que permite que los scripts (generalmente JavaScript)
+            accedan y manipulen el contenido, la estructura y el estilo de un documento web.</p>
+        <p>El DOM representa cada elemento HTML como un nodo en una estructura de árbol, permitiendo a los
+            desarrolladores utilizar métodos y propiedades para acceder, modificar, añadir o eliminar elementos del
+            documento.</p>
+        <div class="reference">
+            Referencia: <a href="https://www.freecodecamp.org/espanol/news/que-es-el-dom-el-significado-del-modelo-de-objeto-de-documento-en-javascript/">https://www.freecodecamp.org/espanol/news/que-es-el-dom-el-significado-del-modelo-de-objeto-de-documento-en-javascript/"</a>
+        </div>
+    </div>
+
+    <div class="pregunta">
+        <h3>2. ¿Qué es un nodo?</h3>
+        <p>Un nodo es cualquier objeto dentro del árbol del DOM. Existen varios tipos de nodos, siendo los más comunes:
+        </p>
+        <ul>
+            <li><strong>Nodos de elemento:</strong> Representan las etiquetas HTML (divs, párrafos, encabezados, etc.)
+            </li>
+            <li><strong>Nodos de texto:</strong> Contienen el texto dentro de los elementos</li>
+            <li><strong>Nodos de atributo:</strong> Representan los atributos de los elementos HTML</li>
+            <li><strong>Nodos de comentario:</strong> Representan los comentarios en el HTML</li>
+            <li><strong>Nodo documento:</strong> El nodo raíz que representa el documento entero</li>
+        </ul>
+        <p>Cada nodo puede tener relaciones con otros nodos: padres, hijos y hermanos, formando así la estructura
+            jerárquica del documento.</p>
+        <div class="reference">
+            Referencia: <a href="https://es.javascript.info/basic-dom-node-properties">https://es.javascript.info/basic-dom-node-properties</a>
+        </div>
+    </div>
+
+    <div class="pregunta">
+        <h3>3. ¿Cómo se accede a un elemento del DOM?</h3>
+        <p>Existen varios métodos para acceder a elementos del DOM:</p>
+        <ul>
+            <li><code>document.getElementById("id")</code>: Devuelve el elemento con el ID especificado</li>
+            <li><code>document.getElementsByClassName("clase")</code>: Devuelve una colección HTML de elementos con la
+                clase especificada</li>
+            <li><code>document.getElementsByTagName("etiqueta")</code>: Devuelve una colección de elementos con la
+                etiqueta especificada</li>
+            <li><code>document.querySelector("selector")</code>: Devuelve el primer elemento que coincide con el
+                selector CSS especificado</li>
+            <li><code>document.querySelectorAll("selector")</code>: Devuelve todos los elementos que coinciden con el
+                selector CSS especificado</li>
+        </ul>
+        <strong>Ejemplo:</strong>
+        <pre><code>// Acceder a un elemento por ID
+const elemento = document.getElementById("miElemento");
+
+// Acceder al primer párrafo de una clase específica
+const primerParrafo = document.querySelector("p.miClase");</code></pre>
+        <div class="reference">
+            Referencia: <a href="https://www.freecodecamp.org/espanol/news/que-es-el-dom-el-significado-del-modelo-de-objeto-de-documento-en-javascript/">https://www.freecodecamp.org/espanol/news/que-es-el-dom-el-significado-del-modelo-de-objeto-de-documento-en-javascript/"</a>
+        </div>
+    </div>
+
+    <div class="pregunta">
+        <h3>4. ¿Cómo se modifica un elemento del DOM?</h3>
+        <p>Una vez que tienes acceso a un elemento del DOM, puedes modificarlo de varias maneras:</p>
+        <ul>
+            <li>Modificar el contenido: <code>elemento.textContent</code>, <code>elemento.innerHTML</code></li>
+            <li>Modificar atributos: <code>elemento.setAttribute("atributo", "valor")</code></li>
+            <li>Modificar estilos: <code>elemento.style.propiedad = "valor"</code></li>
+            <li>Añadir/eliminar clases: <code>elemento.classList.add("clase")</code>,
+                <code>elemento.classList.remove("clase")</code>
+            </li>
+            <li>Crear nuevos elementos: <code>document.createElement("etiqueta")</code></li>
+            <li>Añadir elementos: <code>padre.appendChild(hijo)</code>,
+                <code>padre.insertBefore(nuevo, referencia)</code>
+            </li>
+            <li>Eliminar elementos: <code>padre.removeChild(hijo)</code> o <code>elemento.remove()</code></li>
+        </ul>
+        <strong>Ejemplo:</strong>
+        <pre><code>// Modificar el texto de un elemento
+document.getElementById("miElemento").textContent = "Nuevo texto";
+
+// Cambiar el color de fondo
+document.querySelector(".miClase").style.backgroundColor = "blue";
+
+// Añadir una clase
+document.getElementById("miElemento").classList.add("destacado");</code></pre>
+        <div class="reference">
+            Referencia: <a href="https://developer.mozilla.org/es/docs/Web/API/Element" target="_blank">MDN Web Docs -
+                Element</a>
+        </div>
+    </div>
+
+    <div class="pregunta">
+        <h3>5. ¿Cuál es la diferencia entre getElementby* y querySelector*?</h3>
+        <p>Las principales diferencias son:</p>
+        <table>
+            <tr>
+                <th>getElementBy*</th>
+                <th>querySelector*</th>
+            </tr>
+            <tr>
+                <td>Métodos específicos para cada tipo de selección (ID, clase, etiqueta)</td>
+                <td>Método único que acepta cualquier selector CSS válido</td>
+            </tr>
+            <tr>
+                <td>Devuelve HTMLCollection (viva/dinámica)</td>
+                <td>Devuelve NodeList (estática)</td>
+            </tr>
+            <tr>
+                <td>Generalmente más rápido para selecciones simples</td>
+                <td>Más versátil pero puede ser menos eficiente</td>
+            </tr>
+            <tr>
+                <td>No permite selectores complejos</td>
+                <td>Permite selectores CSS complejos (combinadores, pseudo-clases, etc.)</td>
+            </tr>
+        </table>
+        <p>Por ejemplo, para seleccionar todos los párrafos dentro de un div con clase "contenido":</p>
+        <pre><code>// Con getElementBy* requeriría múltiples pasos
+const divs = document.getElementsByClassName("contenido");
+for (const div of divs) {
+    const parrafos = div.getElementsByTagName("p");
+    // hacer algo con los párrafos
+}
+
+// Con querySelector* en un solo paso
+const parrafos = document.querySelectorAll("div.contenido p");</code></pre>
+        <div class="reference">
+            Referencia: <a href="https://www.freecodecamp.org/espanol/news/que-es-el-dom-el-significado-del-modelo-de-objeto-de-documento-en-javascript/">https://www.freecodecamp.org/espanol/news/que-es-el-dom-el-significado-del-modelo-de-objeto-de-documento-en-javascript/"</a>
+        </div>
+    </div>
+
+    <div class="pregunta">
+        <h3>6. ¿Qué es un evento?</h3>
+        <p>Un evento es una señal que indica que algo ha ocurrido en la página web. Los eventos pueden ser generados por
+            el usuario (como clics, movimientos del ratón, pulsaciones de teclas) o por el navegador (como la carga de
+            la página, cambios en el tamaño de la ventana). Los eventos permiten que el código JavaScript responda a
+            estas acciones de manera dinámica.</p>
+        <p>Algunos eventos comunes incluyen:</p>
+        <ul>
+            <li><code>click</code>: Se dispara cuando se hace clic en un elemento</li>
+            <li><code>mouseover</code>, <code>mouseout</code>: Se disparan cuando el puntero entra o sale de un elemento
+            </li>
+            <li><code>keydown</code>, <code>keyup</code>: Se disparan cuando se presiona o suelta una tecla</li>
+            <li><code>submit</code>: Se dispara cuando se envía un formulario</li>
+            <li><code>load</code>: Se dispara cuando el documento o un recurso ha terminado de cargar</li>
+        </ul>
+        <div class="reference">
+            Referencia: <a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Events">MDN Web Docs -
+                Referencia de eventos</a>
+        </div>
+    </div>
+
+    <div class="pregunta">
+        <h3>7. ¿Qué es un listener?</h3>
+        <p>Un listener (o escuchador de eventos) es una función que "escucha" un evento específico y ejecuta código en
+            respuesta cuando ese evento ocurre. Los listeners permiten crear interactividad en las páginas web, haciendo
+            que respondan a las acciones del usuario o a otros eventos del navegador.</p>
+        <p>En JavaScript, se añaden listeners a los elementos utilizando el método <code>addEventListener()</code>:</p>
+        <pre><code>// Sintaxis básica
+elemento.addEventListener(tipoDeEvento, funcionCallback);
+
+// Ejemplo práctico
+const boton = document.getElementById("miBoton");
+boton.addEventListener("click", function() {
+    alert("¡Has hecho clic en el botón!");
+});</code></pre>
+        <p>También es posible eliminar listeners con <code>removeEventListener()</code>.</p>
+        <div class="reference">
+            Referencia: <a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Events"
+                target="_blank">MDN Web Docs - addEventListener</a>
+        </div>
+    </div>
+
+    <div class="pregunta">
+        <h3>8. ¿Qué es un callback?</h3>
+        <p>Un callback es una función que se pasa como argumento a otra función para ser ejecutada posteriormente. En el
+            contexto de eventos del DOM, un callback es la función que se ejecutará cuando ocurra el evento
+            especificado.</p>
+        <p>Los callbacks son fundamentales en JavaScript debido a su naturaleza asíncrona, permitiendo que el código
+            responda a eventos futuros sin bloquear la ejecución del programa.</p>
+        <pre><code>// Ejemplo de función callback en un evento
+document.getElementById("miBoton").addEventListener("click", function(event) {
+    // Esta función es el callback que se ejecutará cuando ocurra el clic
+    console.log("El botón fue clickeado");
+    console.log("Objeto de evento:", event);
+});
+
+// Otro ejemplo con una función nombrada como callback
+function manejarClic(event) {
+    console.log("Clic detectado");
+}
+
+document.getElementById("otroBoton").addEventListener("click", manejarClic);</code></pre>
+        <div class="reference">
+            Referencia: <a href="https://www.freecodecamp.org/espanol/news/que-es-una-funcion-callback-javascript/" >
+                https://www.freecodecamp.org/espanol/news/que-es-una-funcion-callback-javascript/</a>
+        </div>
+    </div>
+
+    <div class="pregunta">
+        <h3>9. ¿Qué es un objeto de evento?</h3>
+        <p>Un objeto de evento es un objeto que se crea automáticamente cuando ocurre un evento y se pasa como primer
+            argumento a la función callback. Este objeto contiene información detallada sobre el evento ocurrido, como:
+        </p>
+        <ul>
+            <li><code>event.target</code>: El elemento que disparó el evento</li>
+            <li><code>event.type</code>: El tipo de evento (click, mouseover, etc.)</li>
+            <li><code>event.clientX/Y</code>: Las coordenadas del ratón (en eventos de ratón)</li>
+            <li><code>event.key</code>: La tecla presionada (en eventos de teclado)</li>
+            <li><code>event.preventDefault()</code>: Método para cancelar el comportamiento predeterminado</li>
+            <li><code>event.stopPropagation()</code>: Método para detener la propagación del evento</li>
+        </ul>
+        <p>Ejemplo de uso:</p>
+        <pre><code>document.body.addEventListener("click", function(event) {
+    // Muestra las coordenadas del clic
+    console.log(`Clic en coordenadas: X=${event.clientX}, Y=${event.clientY}`);
+    
+    // Muestra el elemento que recibió el clic
+    console.log("Elemento clickeado:", event.target);
+    
+    // Si el elemento clickeado es un enlace, previene la navegación
+    if (event.target.tagName === "A") {
+        event.preventDefault();
+        console.log("Navegación prevenida");
+    }
+});</code></pre>
+        <div class="reference">
+            Referencia: <a href="https://developer.mozilla.org/es/docs/Web/API/Event" target="_blank">MDN Web Docs -
+                Event</a>
+        </div>
+    </div>
+
+    <div class="conclusion">
+        <h2>Conclusiones</h2>
+
+        <div class="seccion">
+            <p>Considero que esta actividad tuvo varios aprendizajes. En los últimos años el uso de herramientas
+                de IA ha incrementado significativamente, hasta el punto de preguntarnos si nos reemplazará y hará
+                nuestro trabajo. Sin embargo, al hacer la actividad, la IA tuvo dificultades para entender algunas
+                de las tareas.
+            </p>
+            <p>
+                En mi caso usé Claude y, para que esta funcione bien, se debe ser muy específico
+                con lo que se quiere hacer y cómo se debería hacer. En el ejercicio 6 hubo problemas con la imagen,
+                pues el enlace que usaba para generar las imágenes no tenía imágenes para las diferentes medidas.
+                Por esto, le tuve que indicar a Claude cuál era el problema y darle un enlace que pudiera resolver el
+                problema. Otro dato importante es la información que da la IA y su veracidad, por lo que, como hicimos
+                en la actividad, es importante verificar la información que nos da.
+            </p>
+        </div>
+
+        <div class="seccion">
+            <h3>¿Cuándo y para qué usarías Claude y cuándo Copilot?</h3>
+            <p><strong>Claude:</strong></p>
+            <ul>
+                <li>Para explicaciones generales de conceptos (Verificando la información)</li>
+                <li>Dudas especificas sobre alguna librería o método</li>
+                <li>Para depurar código existente. Es importante analizar y entender las soluciones que da la IA</li>
+            </ul>
+            <p><strong>GitHub Copilot:</strong></p>
+            <ul>
+                <li>Ayudar a escribir código cuando ya se sabe lo que se va a hacer y cómo</li>
+                <li>Para completar patrones repetitivos o estructuras comunes</li>
+                <li>Ayudar a mantener un formato legible</li>
+
+            </ul>
+        </div>
+
+        <div class="seccion">
+            <h3>Ventajas de usar AI para programar</h3>
+            <ul>
+                <li>Facilita y agiliza la programación de estructuras comúnes o repetitivas</li>
+                <li>Ayuda a encontrar errores logicos o de sintaxis</li>
+                <li>Descripción general de un bloque de código no comentado</li>
+        </div>
+
+        <div class="seccion">
+            <h3>Desventajas de usar AI para programar</h3>
+            <ul>
+                <li>Se debe ser muy especifico con lo que se quiere hacer y el cómo</li>
+                <li>Alguna de la información adquirida puede ser falsa</li>
+                <li>Puede generar dependencia si no se usa solo como un apoyo</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="ejercicios">
+        <p>Da click para ver los <a href="dom_ejercicios.html">ejercicios hechos con Claude</a></p>
+    </div>
+
+    <nav>
+        <a href="blog.html">Volver al blog</a>
+    </nav>
+    </div>
+</body>
